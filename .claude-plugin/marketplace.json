@@ -1,0 +1,5 @@
+{
+  "name": "reason-to-ship-marketplace",
+  "owner": {"name": "Reason to Ship Contributors"},
+  "plugins": [{"name": "reason-to-ship", "source": "./", "description": "Learn engineering judgment while shipping real code."}]
+}

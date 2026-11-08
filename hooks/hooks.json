@@ -1,0 +1,9 @@
+{
+  "description": "Read-only resume hint for an active project training session.",
+  "hooks": {
+    "SessionStart": [{
+      "matcher": "startup|resume|clear|compact|fork",
+      "hooks": [{"type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/session_start.sh\"", "timeout": 5}]
+    }]
+  }
+}
