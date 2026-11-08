@@ -1,6 +1,6 @@
 # Standalone skill packages / 独立技能安装包
 
-These v0.1.0 preview packages contain the same bilingual training skill and five cases. They do not install Claude plugins or hooks. / 两份预览安装包的训练内容相同，不安装 Claude 插件或 Hook。
+These v0.2.0 preview packages contain the same bilingual training skill and five cases. They do not install Claude plugins or hooks. / 两份预览安装包的训练内容相同，不安装 Claude 插件或 Hook。
 
 They also include VibeWise-derived onboarding and state templates, renamed to `learner.md`, `learning-log.md` and `project-context.md` inside each project's `.reason-to-ship/`, with upstream MIT attribution. Legacy `state.md` and `decisions.md` remain readable without automatic migration. / 同时包含改编自 VibeWise 的双语初始化流程、三份改名档案模板与原作者 MIT 许可；兼容旧记录，不自动迁移。默认陪伴式引导，允许跳过设置，未知项记为未说明。
 
@@ -10,8 +10,8 @@ For a scoped reset, ask `$reason-to-ship 重置学习记录` (learning only by d
 
 | Package | Extract into | Result |
 | --- | --- | --- |
-| [通用 .agents](dist/reason-to-ship-v0.1.0-agents.zip) | 项目根目录，或用户主目录 | `.agents/skills/reason-to-ship/SKILL.md` |
-| [Codex .codex](dist/reason-to-ship-v0.1.0-codex.zip) | 用户主目录 | `.codex/skills/reason-to-ship/SKILL.md` |
+| [通用 .agents](dist/reason-to-ship-v0.2.0-agents.zip) | 项目根目录，或用户主目录 | `.agents/skills/reason-to-ship/SKILL.md` |
+| [Codex .codex](dist/reason-to-ship-v0.2.0-codex.zip) | 用户主目录 | `.codex/skills/reason-to-ship/SKILL.md` |
 
 优先选 `.agents`：当前 [Codex 官方说明](https://learn.chatgpt.com/docs/build-skills)将项目级和用户级 `.agents/skills` 列为发现目录。这里的“通用”指标准 `SKILL.md` 和自包含资源；其他工具是否自动发现 `.agents` 取决于其自身支持。
 
@@ -30,7 +30,7 @@ $projectRoot = 'D:\your-project'
 if (Test-Path -LiteralPath (Join-Path $projectRoot '.agents/skills/reason-to-ship')) {
     throw 'Skill already exists. Back it up and review before replacing.'
 }
-Expand-Archive -LiteralPath '.\dist\reason-to-ship-v0.1.0-agents.zip' -DestinationPath $projectRoot
+Expand-Archive -LiteralPath '.\dist\reason-to-ship-v0.2.0-agents.zip' -DestinationPath $projectRoot
 ```
 
 Codex 默认用户级目录：
@@ -42,7 +42,7 @@ if ($env:CODEX_HOME -and $env:CODEX_HOME -ne (Join-Path $HOME '.codex')) {
 if (Test-Path -LiteralPath (Join-Path $HOME '.codex/skills/reason-to-ship')) {
     throw 'Skill already exists. Back it up and review before replacing.'
 }
-Expand-Archive -LiteralPath '.\dist\reason-to-ship-v0.1.0-codex.zip' -DestinationPath $HOME
+Expand-Archive -LiteralPath '.\dist\reason-to-ship-v0.2.0-codex.zip' -DestinationPath $HOME
 ```
 
 用户级 `.agents`：将第一段的 `$projectRoot` 设为 `$HOME`。这些命令不需要 Python，也不会修改 `config.toml`、`AGENTS.md` 或现有 Hook 配置。
@@ -53,13 +53,13 @@ Expand-Archive -LiteralPath '.\dist\reason-to-ship-v0.1.0-codex.zip' -Destinatio
 
 ```bash
 # Project-level shared skill
-unzip -n dist/reason-to-ship-v0.1.0-agents.zip -d /path/to/your-project
+unzip -n dist/reason-to-ship-v0.2.0-agents.zip -d /path/to/your-project
 
 # OR user-level shared skill
-unzip -n dist/reason-to-ship-v0.1.0-agents.zip -d "$HOME"
+unzip -n dist/reason-to-ship-v0.2.0-agents.zip -d "$HOME"
 
 # OR default Codex user directory (only when CODEX_HOME is unset/default)
-unzip -n dist/reason-to-ship-v0.1.0-codex.zip -d "$HOME"
+unzip -n dist/reason-to-ship-v0.2.0-codex.zip -d "$HOME"
 ```
 
 For a custom `CODEX_HOME`, extract to a temporary folder and copy only `.codex/skills/reason-to-ship` into `$CODEX_HOME/skills/`. Keep hidden folders visible in your file manager.

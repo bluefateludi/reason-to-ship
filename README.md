@@ -1,5 +1,7 @@
 # Reason to Ship 🚢
 
+Current release: **v0.2.0** · [Release notes](CHANGELOG.md)
+
 **Think independently. Ship with evidence.**
 
 [中文说明](README.zh-CN.md) · [Cases / 案例](cases/README.md)
@@ -50,7 +52,7 @@ Use `/reason-to-ship:reset` in Claude Code, or ask `$reason-to-ship` to reset sa
 
 The helper backs up all existing managed notes under `.reason-to-ship/backups/`, verifies copies and a hash manifest, then changes notes. It preserves pending decisions during a learning reset. Backup failure leaves active notes unchanged; an interrupted write leaves a recovery marker rather than claiming success. Cleared context must not be recreated from old chat or backups. See the [reset workflow](skills/train/reset.md). Backup restoration is separately reviewed; no automatic restore command is bundled.
 
-## First release
+## v0.2.0
 
 - Bilingual training and reset skills, five engineering lenses, guided → independent → later authentic transfer evidence
 - Five original bilingual scenario briefs: retry, idempotency, cache consistency, rate limiting, async jobs

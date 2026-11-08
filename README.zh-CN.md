@@ -1,5 +1,7 @@
 # Reason to Ship 🚢
 
+当前版本：**v0.2.0** · [更新记录](CHANGELOG.md)
+
 **独立思考，以证据交付。**
 
 [English](README.md) · [工程案例库](cases/README.md)
@@ -50,7 +52,7 @@ Claude Code 使用 `/reason-to-ship:reset`；独立技能使用 `$reason-to-ship
 
 脚本先把现有受管记录完整备份到 `.reason-to-ship/backups/` 并校验，成功后才修改。学习日志中的待确认决策不会随默认重置被删除。备份失败保留原记录；写入中断会留下未完成标记，恢复流程会要求检查，不误报成功。重置后不从旧聊天或备份自动补回已清空的记忆。详情见[中文重置流程](skills/train/reset.zh-CN.md)。尚无自动恢复备份命令，恢复需单独审阅。
 
-## v0.1 范围
+## v0.2.0 范围
 
 训练与重置两个 Claude Code Skills、五个原创中英双语案例、只读 Hooks、单元测试与人工对话测试清单；另提供包含相同重置流程的 `.agents` 和 `.codex` 独立技能安装包。Codex 生命周期集成和跨客户端对话验收尚未完成，暂不包含 Web 服务、积分系统或独立案例网站。
 
