@@ -1,5 +1,29 @@
 # v0.1 validation / 验证记录
 
+## Follow-up: scoped backup-first reset
+
+Validated on 2026-11-08:
+
+- `python -B -m unittest discover -s tests -v`: 41 tests, 39 passed, 2 skipped because Windows symlink creation privilege is unavailable.
+- Reset tests cover read-only previews, content-bound confirmation, three scopes, preserved pending approvals and legacy learning evidence, English/Chinese sections, exact backups and manifests, corruption/disk-write failures, interrupted-state guards, concurrent edits, multiple backups and repository boundaries.
+- Both extracted standalone packages executed preview and confirmed reset in temporary fixture projects. No actual user learning records were reset.
+- Hook tests cover invalid/incomplete reset metadata, stale reset locks and preserving paused mode after a completed reset.
+- Final checks also cover Markdown heading variations and refusing ambiguous pending-decision headings before mutation. All local Markdown links and the three skill entrypoint validators passed.
+- Native-host confirmation UX, long-term dialogue behavior and learning outcomes remain unverified. No automatic backup-restore command is included.
+
+The following sections record earlier stages and their test counts.
+
+## Follow-up: renamed learning records and personalization
+
+Validated on 2026-11-08 after adapting VibeWise's templates/onboarding to `learner.md`, `learning-log.md` and `project-context.md`:
+
+- `python -B -m unittest discover -s tests -v`: 20 tests, 19 passed, 1 skipped for unavailable Windows symlink privileges.
+- Coverage includes new-profile activation, paused/invalid/oversized new profiles not falling back to legacy activation, bounded read-only recovery, non-Git isolation, legacy behavior, bundled reference links, upstream license inclusion and deterministic package content.
+- Skill Creator `quick_validate.py` passed for both the Claude and standalone skill entrypoints (Python UTF-8 mode).
+- No new live host dialogue acceptance was performed. Added scenarios cover skipped setup, per-topic experience, persistence consent and mixed legacy/new records; their behavioral outcomes remain unverified. No learning-outcome claim is made. A backup-first reset command remains unimplemented.
+
+The entries below describe the earlier validation run, not the current test count.
+
 Date: 2026-11-08 (Asia/Hong_Kong). Environment: Windows, Git Bash, Python 3.12, Claude Code 2.1.312.
 
 ## Automated checks

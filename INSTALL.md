@@ -2,6 +2,10 @@
 
 These v0.1.0 preview packages contain the same bilingual training skill and five cases. They do not install Claude plugins or hooks. / 两份预览安装包的训练内容相同，不安装 Claude 插件或 Hook。
 
+They also include VibeWise-derived onboarding and state templates, renamed to `learner.md`, `learning-log.md` and `project-context.md` inside each project's `.reason-to-ship/`, with upstream MIT attribution. Legacy `state.md` and `decisions.md` remain readable without automatic migration. / 同时包含改编自 VibeWise 的双语初始化流程、三份改名档案模板与原作者 MIT 许可；兼容旧记录，不自动迁移。默认陪伴式引导，允许跳过设置，未知项记为未说明。
+
+For a scoped reset, ask `$reason-to-ship 重置学习记录` (learning only by default), or specify project context or all records. The agent previews the scope and asks for confirmation before the bundled helper verifies a backup and applies the reset. Only reset requires Python 3.8+; installation and normal coaching do not. / 重置可选仅学习、仅项目或全部；预览确认后先校验备份再改记录，默认保留偏好、经验和项目决策。仅重置脚本需要 Python 3.8+，安装与普通使用不需要。重置指南及脚本均包含在独立包中。
+
 ## Choose one / 二选一
 
 | Package | Extract into | Result |

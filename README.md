@@ -28,11 +28,31 @@ The assistant then helps inspect the real implementation, agree on boundaries, i
 
 ## Learning continuity
 
-Optional `.reason-to-ship/state.md` and `decisions.md` in each project hold a small snapshot and an active decision. The Claude Code SessionStart hook restores a pointer after startup, resume, clear, compact or fork. It is read-only, bounded and respects repository boundaries. Project learning state is intended to stay uncommitted.
+With consent to save progress, each project's `.reason-to-ship/` holds three compact notes:
+
+- `learner.md`: project situation, overall and per-stack experience, goals, preferences and concept snapshots.
+- `learning-log.md`: topic-based learning evidence and pending decisions.
+- `project-context.md`: requirements, components, flows, trust boundaries, verified build commands and unknowns.
+
+The [templates](skills/train/state-templates.md) and [onboarding workflow](skills/train/personalization.md) are adapted from VibeWise with renamed files; [upstream attribution and MIT license](skills/train/THIRD_PARTY_NOTICES.md) are included in standalone packages. Reuse known answers, ask one setup question at a time, and allow defaults or skipped setup. Unknowns remain unspecified; self-reported experience is not demonstrated understanding. Default to companion-style guidance at important project design decisions, while keeping small changes moving.
+
+Legacy `state.md` and `decisions.md` remain readable without automatic migration. New learner state controls activation when both exist; legacy pending decisions must still be checked. Keep self-report separate from observed reasoning, recording the source task, hints and uncertainty. Recheck stale project facts before use. The Claude Code SessionStart hook emits a read-only, bounded recovery pointer. Standalone packages resume only when invoked. Keep personal notes uncommitted.
+
+## Backed-up reset
+
+Use `/reason-to-ship:reset` in Claude Code, or ask `$reason-to-ship` to reset saved learning in a standalone install. Python 3.8+ is required for reset. The agent previews the project, affected files and scope, waits for confirmation, then applies that exact preview:
+
+| Scope | Clear | Preserve |
+| --- | --- | --- |
+| Learning (default) | Concept snapshots and learning evidence | Preferences, self-report, project designs and pending decisions |
+| Project | Project map, project-specific fields, designs and pending decisions | Preferences, self-report and historical learning evidence |
+| All | All of the above | Source code, unrelated files and backups |
+
+The helper backs up all existing managed notes under `.reason-to-ship/backups/`, verifies copies and a hash manifest, then changes notes. It preserves pending decisions during a learning reset. Backup failure leaves active notes unchanged; an interrupted write leaves a recovery marker rather than claiming success. Cleared context must not be recreated from old chat or backups. See the [reset workflow](skills/train/reset.md). Backup restoration is separately reviewed; no automatic restore command is bundled.
 
 ## First release
 
-- One bilingual core skill, five engineering lenses, guided → independent → later authentic transfer evidence
+- Bilingual training and reset skills, five engineering lenses, guided → independent → later authentic transfer evidence
 - Five original bilingual scenario briefs: retry, idempotency, cache consistency, rate limiting, async jobs
 - Claude Code hook plus Python unit tests, manual dialogue evaluation checklist
 

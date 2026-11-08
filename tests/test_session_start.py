@@ -45,6 +45,65 @@ class HookTests(unittest.TestCase):
         (self.state / 'state.md').write_text('Learning mode: paused\n')
         self.assertIsNone(self.run_hook())
 
+    def test_incomplete_reset_returns_recovery_instead_of_resume(self):
+        (self.state / 'reset-status.json').write_text(json.dumps({
+            'version': 1, 'status': 'incomplete', 'cleared': {'learning': '2026-11-08'}}))
+        context = self.run_hook()['hookSpecificOutput']['additionalContext']
+        self.assertIn('Do not resume', context)
+        self.assertNotIn('Resume the existing task', context)
+
+    def test_invalid_reset_marker_or_lock_requires_recovery(self):
+        marker = self.state / 'reset-status.json'
+        for value in ('{', '[]', '{"version": 1, "status": "complete"}'):
+            marker.write_text(value)
+            self.assertIn('recovery inspection', self.run_hook()['hookSpecificOutput']['additionalContext'])
+        marker.unlink()
+        (self.state / '.reset.lock').write_text('other process')
+        self.assertIn('recovery inspection', self.run_hook()['hookSpecificOutput']['additionalContext'])
+
+    def test_completed_reset_preserves_paused_mode(self):
+        (self.state / 'reset-status.json').write_text(json.dumps({
+            'version': 1, 'status': 'complete', 'cleared': {'learning': '2026-11-08'}}))
+        self.assertIn('cleared context boundaries', self.run_hook()['hookSpecificOutput']['additionalContext'])
+        (self.state / 'state.md').write_text('Learning mode: paused\n')
+        self.assertIsNone(self.run_hook())
+
+    def test_new_learner_without_legacy_state(self):
+        (self.state / 'state.md').unlink()
+        (self.state / 'learner.md').write_text('Learning mode: active\nOnboarding: complete\n')
+        result = self.run_hook(source='compact')
+        context = result['hookSpecificOutput']['additionalContext']
+        for name in ('learner.md', 'learning-log.md', 'project-context.md', 'decisions.md'):
+            self.assertIn(name, context)
+
+    def test_new_paused_state_overrides_legacy_active(self):
+        (self.state / 'learner.md').write_text('Learning mode: paused\n')
+        self.assertIsNone(self.run_hook())
+
+    def test_invalid_new_profile_does_not_fall_back(self):
+        (self.state / 'learner.md').mkdir()
+        self.assertIsNone(self.run_hook())
+
+    def test_oversized_new_profile_does_not_fall_back(self):
+        (self.state / 'learner.md').write_text('Learning mode: active\n' + 'x' * 300000)
+        self.assertIsNone(self.run_hook())
+
+    def test_new_history_is_not_loaded_or_modified(self):
+        (self.state / 'learner.md').write_text('Learning mode: active\n')
+        before = self.run_hook()
+        for name in ('learning-log.md', 'project-context.md'):
+            (self.state / name).write_text('PRIVATE_SENTINEL' + 'x' * 500000)
+        snapshot = {p.name: p.read_bytes() for p in self.state.iterdir()}
+        self.assertEqual(before, self.run_hook())
+        self.assertEqual(snapshot, {p.name: p.read_bytes() for p in self.state.iterdir()})
+
+    def test_non_git_child_does_not_inherit_parent_notes(self):
+        (self.repo / '.git').rmdir()
+        child = self.repo / 'unrelated'
+        child.mkdir()
+        self.assertIsNone(self.run_hook(cwd=child))
+        self.assertIsNotNone(self.run_hook())
+
     def test_child_directory(self):
         child=self.repo/'src';child.mkdir()
         self.assertIsNotNone(self.run_hook(cwd=child))
