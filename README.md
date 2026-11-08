@@ -4,6 +4,8 @@
 
 [中文说明](README.zh-CN.md) · [Cases / 案例](cases/README.md)
 
+**Standalone installs:** [.agents and .codex skill ZIPs](INSTALL.md) include all five bilingual cases. These preview packages resume state when invoked and do not install the Claude SessionStart hook.
+
 Reason to Ship is a small Claude Code learning plugin for *real engineering work*. It builds a repeatable habit: understand the problem → weigh options → trace code and data → consider failures → verify the result. AI can write the implementation; the engineer owns the decisions.
 
 ## Install locally (Claude Code)
@@ -34,7 +36,7 @@ Optional `.reason-to-ship/state.md` and `decisions.md` in each project hold a sm
 - Five original bilingual scenario briefs: retry, idempotency, cache consistency, rate limiting, async jobs
 - Claude Code hook plus Python unit tests, manual dialogue evaluation checklist
 
-**Limitations:** Automatic tests cannot prove learning outcomes. Codex full integration and a separate community case repository are not in v0.1. A live CLI run recognized the plugin and training command, but dialogue acceptance is still incomplete. See [validation results](tests/validation-2026-11-08.md).
+**Limitations:** Automatic tests cannot prove learning outcomes. Standalone skill packages are available for `.agents` and `.codex`; full Codex lifecycle integration and cross-client dialogue acceptance remain unverified. A live Claude CLI run recognized the plugin and training command, but dialogue acceptance is still incomplete. See [validation results](tests/validation-2026-11-08.md).
 
 ## Checks
 

@@ -4,6 +4,8 @@
 
 [English](README.md) · [工程案例库](cases/README.md)
 
+**独立技能安装：** 提供 [.agents 通用包和 .codex 包](INSTALL.md)，内含五个双语案例。预览包在调用时恢复状态，不安装 Claude SessionStart Hook。
+
 这不是一个每天布置学习任务的考试工具。你带来一个真实的 Bug、需求或者设计问题，AI 用最关键的问题引导你思考，确认方案后辅助写代码、运行测试，并帮助你形成可迁移的工程判断。
 
 ## Claude Code 本地启动
@@ -28,7 +30,7 @@ claude --plugin-dir /你的绝对路径/reason-to-ship
 
 ## v0.1 范围
 
-一个 Claude Code Skill、五个原创中英双语案例、只读 Hooks、单元测试与人工对话测试清单。暂不包含 Codex 完整适配、Web 服务、积分系统或独立案例网站。
+一个 Claude Code Skill、五个原创中英双语案例、只读 Hooks、单元测试与人工对话测试清单；另提供 `.agents` 和 `.codex` 独立技能安装包。Codex 生命周期集成和跨客户端对话验收尚未完成，暂不包含 Web 服务、积分系统或独立案例网站。
 
 ## 测试
 

@@ -1,0 +1,2 @@
+2d44d20d0a8b2225ef9e4b77594d25faac009aa0bdfd7bfb49cc7c25909d56c5  reason-to-ship-v0.1.0-agents.zip
+7448d030ec9ff0928a0f5ff0b20ea3f69e0750305190110ec6dcf6d4b5680bda  reason-to-ship-v0.1.0-codex.zip
