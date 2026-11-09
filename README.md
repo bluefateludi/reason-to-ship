@@ -10,6 +10,12 @@ Current release: **v0.2.0** · [Release notes](CHANGELOG.md)
 
 Reason to Ship is a small Claude Code learning plugin for *real engineering work*. It builds a repeatable habit: understand the problem → weigh options → trace code and data → consider failures → verify the result. AI can write the implementation; the engineer owns the decisions.
 
+## How it works
+
+Bring a real project task. Discuss key choices, implement the agreed scope, verify the result, and save context with consent for the next task.
+
+![Workflow cycle from a real task through context, decisions, implementation, verification and saved context to the next task](docs/workflow/learning-cycle.en.png)
+
 ## Install locally (Claude Code)
 
 ```bash
