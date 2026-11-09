@@ -16,6 +16,20 @@
 
 ![项目陪伴循环：真实任务、了解上下文、讨论方案、实现改动、验证结果、保存上下文，再回到下一次任务](docs/workflow/learning-cycle.zh-CN.png)
 
+## Codex 安装与使用
+
+1. 下载 [v0.2.0 .agents 技能包](https://github.com/bluefateludi/reason-to-ship/releases/download/v0.2.0/reason-to-ship-v0.2.0-agents.zip)。
+2. 解压到你要使用它的项目根目录，确认入口为 `<你的项目>/.agents/skills/reason-to-ship/SKILL.md`。希望所有项目可用时，解压到用户主目录。
+3. 在 Codex 中打开该项目，输入下面的请求。
+
+```text
+$reason-to-ship 陪我设计这个功能，先听我的想法，每次讨论一个关键决策。
+```
+
+Codex CLI 和 IDE 扩展可通过输入 `$` 或 `/skills` 选择技能。安装后未出现时，重启 Codex。目录与调用方式依据 [OpenAI 官方技能文档](https://learn.chatgpt.com/docs/build-skills)。
+
+包内包含双语案例、个性化、项目上下文与带备份的重置。已保存的记录在调用技能时恢复。解压布局与重置已有自动检查，真实客户端发现和多轮对话验收仍待完成。操作系统对应命令和校验方法见[安装指南](INSTALL.md)。
+
 ## Claude Code 本地启动
 
 ```bash

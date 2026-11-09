@@ -8,13 +8,27 @@ Current release: **v0.2.0** · [Release notes](CHANGELOG.md)
 
 **Standalone installs:** [.agents and .codex skill ZIPs](INSTALL.md) include all five bilingual cases. These preview packages resume state when invoked and do not install the Claude SessionStart hook.
 
-Reason to Ship is a small Claude Code learning plugin for *real engineering work*. It builds a repeatable habit: understand the problem → weigh options → trace code and data → consider failures → verify the result. AI can write the implementation; the engineer owns the decisions.
+Reason to Ship is a learning skill for *real engineering work*, available as a standalone skill for Codex and a plugin for Claude Code. It builds a repeatable habit: understand the problem → weigh options → trace code and data → consider failures → verify the result. AI can write the implementation; the engineer owns the decisions.
 
 ## How it works
 
 Bring a real project task. Discuss key choices, implement the agreed scope, verify the result, and save context with consent for the next task.
 
 ![Workflow cycle from a real task through context, decisions, implementation, verification and saved context to the next task](docs/workflow/learning-cycle.en.png)
+
+## Install in Codex
+
+1. Download the [v0.2.0 .agents skill package](https://github.com/bluefateludi/reason-to-ship/releases/download/v0.2.0/reason-to-ship-v0.2.0-agents.zip).
+2. Extract it into the project where you want to use it. The entrypoint should be `<your-project>/.agents/skills/reason-to-ship/SKILL.md`. To use it across projects, extract into your home directory instead.
+3. Open that project in Codex and invoke the skill:
+
+```text
+$reason-to-ship Help me design this feature. Start with my idea and discuss one key decision at a time.
+```
+
+In Codex CLI and the IDE extension, type `$` or use `/skills` to select it. If the skill does not appear, restart Codex. These discovery locations and invocation methods follow the [official skills documentation](https://learn.chatgpt.com/docs/build-skills).
+
+The package includes bilingual cases, personalization, project notes and backed-up resets. Saved notes resume when the skill is invoked. Package extraction and reset checks are automated; actual client discovery and multi-turn dialogue acceptance remain pending. [Platform-specific install commands and checksums](INSTALL.md).
 
 ## Install locally (Claude Code)
 
