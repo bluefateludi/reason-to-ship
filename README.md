@@ -16,19 +16,25 @@ Bring a real project task. Discuss key choices, implement the agreed scope, veri
 
 ![Workflow cycle from a real task through context, decisions, implementation, verification and saved context to the next task](docs/workflow/learning-cycle.en.png)
 
-## Install in Codex
+## Codex package (.codex)
 
-1. Download the [v0.2.0 .agents skill package](https://github.com/bluefateludi/reason-to-ship/releases/download/v0.2.0/reason-to-ship-v0.2.0-agents.zip).
-2. Extract it into the project where you want to use it. The entrypoint should be `<your-project>/.agents/skills/reason-to-ship/SKILL.md`. To use it across projects, extract into your home directory instead.
+1. Download the [v0.2.0 Codex package](https://github.com/bluefateludi/reason-to-ship/releases/download/v0.2.0/reason-to-ship-v0.2.0-codex.zip).
+2. For Codex environments that load `~/.codex/skills`, extract into your home directory. The entrypoint should be `~/.codex/skills/reason-to-ship/SKILL.md`. With a custom `CODEX_HOME`, copy the extracted `reason-to-ship` folder into `$CODEX_HOME/skills/`.
 3. Open that project in Codex and invoke the skill:
 
 ```text
 $reason-to-ship Help me design this feature. Start with my idea and discuss one key decision at a time.
 ```
 
-In Codex CLI and the IDE extension, type `$` or use `/skills` to select it. If the skill does not appear, restart Codex. These discovery locations and invocation methods follow the [official skills documentation](https://learn.chatgpt.com/docs/build-skills).
+In Codex CLI and the IDE extension, type `$` or use `/skills` to select it. If the skill does not appear, restart Codex. Current [official skills documentation](https://learn.chatgpt.com/docs/build-skills) lists `.agents/skills` for local discovery. Choose the shared package below when your client uses those locations.
 
 The package includes bilingual cases, personalization, project notes and backed-up resets. Saved notes resume when the skill is invoked. Package extraction and reset checks are automated; actual client discovery and multi-turn dialogue acceptance remain pending. [Platform-specific install commands and checksums](INSTALL.md).
+
+## Shared skill package (.agents)
+
+Download the [v0.2.0 .agents package](https://github.com/bluefateludi/reason-to-ship/releases/download/v0.2.0/reason-to-ship-v0.2.0-agents.zip) and extract into your project root or home directory. The entrypoint is `.agents/skills/reason-to-ship/SKILL.md`. This layout works with current Codex discovery and other clients that support this directory. Invocation in other clients follows their own skill interface.
+
+The two ZIPs contain the same skill resources in different installation directories. Install one copy visible to your client. [Choose a directory and installation command](INSTALL.md).
 
 ## Install locally (Claude Code)
 

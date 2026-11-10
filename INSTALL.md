@@ -6,16 +6,16 @@ They also include VibeWise-derived onboarding and state templates, renamed to `l
 
 For a scoped reset, ask `$reason-to-ship 重置学习记录` (learning only by default), or specify project context or all records. The agent previews the scope and asks for confirmation before the bundled helper verifies a backup and applies the reset. Only reset requires Python 3.8+; installation and normal coaching do not. / 重置可选仅学习、仅项目或全部；预览确认后先校验备份再改记录，默认保留偏好、经验和项目决策。仅重置脚本需要 Python 3.8+，安装与普通使用不需要。重置指南及脚本均包含在独立包中。
 
-## Choose one / 二选一
+## Codex package and shared package / Codex 包与通用包
 
 | Package | Extract into | Result |
 | --- | --- | --- |
 | [通用 .agents](dist/reason-to-ship-v0.2.0-agents.zip) | 项目根目录，或用户主目录 | `.agents/skills/reason-to-ship/SKILL.md` |
-| [Codex .codex](dist/reason-to-ship-v0.2.0-codex.zip) | 用户主目录 | `.codex/skills/reason-to-ship/SKILL.md` |
+| [Codex .codex 兼容目录包](dist/reason-to-ship-v0.2.0-codex.zip) | 读取此目录的 Codex 环境，解压到用户主目录 | `.codex/skills/reason-to-ship/SKILL.md` |
 
-优先选 `.agents`：当前 [Codex 官方说明](https://learn.chatgpt.com/docs/build-skills)将项目级和用户级 `.agents/skills` 列为发现目录。这里的“通用”指标准 `SKILL.md` 和自包含资源；其他工具是否自动发现 `.agents` 取决于其自身支持。
+按客户端读取的目录选择。当前 [Codex 官方说明](https://learn.chatgpt.com/docs/build-skills)将项目级和用户级 `.agents/skills` 列为发现目录。两个包的技能资源相同，ZIP 内目录分别为 `.agents` 和 `.codex`。“通用”指标准 `SKILL.md` 和自包含资源，其他工具是否自动发现 `.agents` 取决于其自身支持。
 
-`.codex` 包供仍使用 `~/.codex/skills` 的 Codex 环境使用；本机已有该技能目录，[官方 Cookbook](https://developers.openai.com/cookbook/examples/codex/iterating-development-workflows-with-codex)也给出 `$CODEX_HOME/skills` 用法。它不是对所有客户端版本的兼容性承诺。设置了自定义 `CODEX_HOME` 时，将包内的 `reason-to-ship` 文件夹放入 `$CODEX_HOME/skills/`。不要把自定义路径覆盖成默认路径。
+`.codex` 包适用于读取 `~/.codex/skills` 的 Codex 环境，本机已有该技能目录。请按实际客户端的技能发现目录选择。设置了自定义 `CODEX_HOME` 时，将包内的 `reason-to-ship` 文件夹放入 `$CODEX_HOME/skills/`。
 
 Install only one copy visible to a given client to avoid duplicate skill names. / 同一客户端可发现的范围内只安装一份。
 
@@ -33,7 +33,7 @@ if (Test-Path -LiteralPath (Join-Path $projectRoot '.agents/skills/reason-to-shi
 Expand-Archive -LiteralPath '.\dist\reason-to-ship-v0.2.0-agents.zip' -DestinationPath $projectRoot
 ```
 
-Codex 默认用户级目录：
+Codex `.codex` 兼容目录安装：
 
 ```powershell
 if ($env:CODEX_HOME -and $env:CODEX_HOME -ne (Join-Path $HOME '.codex')) {
